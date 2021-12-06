@@ -1,7 +1,7 @@
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
-import { Box, Button, AppBar, Toolbar, Container } from '@mui/material';
+import { Box, Button, AppBar, Toolbar, Container, TextField } from '@mui/material';
 // hooks
 import useOffSetTop from '../../hooks/useOffSetTop';
 // components
@@ -13,6 +13,7 @@ import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import navConfig from './MenuConfig';
 
+import * as React from 'react';
 // ----------------------------------------------------------------------
 
 const APP_BAR_MOBILE = 64;
@@ -70,7 +71,7 @@ export default function MainNavbar() {
   const isHome = pathname === '/';
 
   return (
-    <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>
+    <AppBar sx={{ boxShadow: 0, bgcolor: 'background.default' }}>
       <ToolbarStyle
         disableGutters
         sx={{
@@ -92,20 +93,27 @@ export default function MainNavbar() {
             <Logo />
           </RouterLink>
           <Label color="info" sx={{ ml: 1 }}>
-            Simple Ts v2.6.0
+            Phu Quoc Photo
           </Label>
           <Box sx={{ flexGrow: 1 }} />
 
           <MHidden width="mdDown">
             <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
           </MHidden>
-
+          <Box
+            component="form"
+            sx={{ '& > :not(style)': { m: 1, width: '15ch' } }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField id="outlined-basic" label="Input code here" variant="outlined" />
+          </Box>
           <Button
             variant="contained"
             target="_blank"
             href="https://material-ui.com/store/items/minimal-dashboard/"
           >
-            Purchase Now
+            Send
           </Button>
 
           <MHidden width="mdUp">
