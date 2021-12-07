@@ -1,16 +1,22 @@
-import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
-import flashFill from '@iconify/icons-eva/flash-fill';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
-import { Button, Box, Container, Typography, Stack } from '@mui/material';
+import {
+  IconButton,
+  Box,
+  Container,
+  Typography,
+  Stack,
+  TextField,
+  InputAdornment
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import * as React from 'react';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 //
 import { varFadeInUp, varWrapEnter, varFadeInRight } from '../../animate';
-
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(motion.div)(({ theme }) => ({
@@ -26,7 +32,6 @@ const RootStyle = styled(motion.div)(({ theme }) => ({
     alignItems: 'center'
   }
 }));
-
 const ContentStyle = styled((props) => <Stack spacing={5} {...props} />)(({ theme }) => ({
   zIndex: 10,
   maxWidth: 520,
@@ -63,21 +68,44 @@ export default function LandingHero() {
         <Container maxWidth="lg">
           <ContentStyle>
             <motion.div variants={varFadeInRight}>
-              <Typography variant="h1" sx={{ color: 'common.white' }}>
+              <Typography
+                sx={{ fontSize: '100px', fontFamily: 'sans-serif', color: 'common.white' }}
+              >
                 Phu Quoc <br />
                 Photo <br />
               </Typography>
             </motion.div>
             <motion.div variants={varFadeInRight}>
-              <Button
-                size="large"
-                variant="contained"
-                component={RouterLink}
-                to={PATH_DASHBOARD.root}
-                startIcon={<Icon icon={flashFill} width={20} height={20} />}
-              >
-                Live Preview
-              </Button>
+              <TextField
+                style={{
+                  flex: 1,
+                  margin: '0 40px 0 0',
+                  color: 'common.white',
+                  border: 'none',
+                  background: 'rgb(243, 246, 249)',
+                  borderRadius: '40px',
+                  transition: 'width 300ms ease'
+                }}
+                size="medium"
+                fullWidth
+                id="epg-value"
+                label="Input code hear"
+                margin="dense"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        edge="end"
+                        color="primary"
+                        component={RouterLink}
+                        to={PATH_DASHBOARD.root}
+                      >
+                        <SearchIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+              />
             </motion.div>
           </ContentStyle>
         </Container>
