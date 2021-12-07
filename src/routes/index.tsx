@@ -11,7 +11,7 @@ import LoadingScreen from '../components/LoadingScreen';
 const Loadable = (Component: any) => (props: any) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { pathname } = useLocation();
-  const isDashboard = pathname.includes('/dashboard');
+  const isDashboard = pathname.includes('/photos');
 
   return (
     <Suspense
@@ -38,17 +38,17 @@ export default function Router() {
   return useRoutes([
     // Dashboard Routes
     {
-      path: 'dashboard',
+      path: 'photos',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to="/dashboard/one" replace /> },
+        { element: <Navigate to="/photos" replace /> },
         { path: 'one', element: <PageOne /> },
         { path: 'two', element: <PageTwo /> },
         { path: 'three', element: <PageThree /> },
         {
           path: 'app',
           children: [
-            { element: <Navigate to="/dashboard/app/four" replace /> },
+            { element: <Navigate to="/photos/app/four" replace /> },
             { path: 'four', element: <PageFour /> },
             { path: 'five', element: <PageFive /> },
             { path: 'six', element: <PageSix /> }
