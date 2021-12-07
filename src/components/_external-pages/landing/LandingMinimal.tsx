@@ -1,37 +1,12 @@
 // material
 import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, Grid, Card, Container, Typography, useMediaQuery } from '@mui/material';
+import { Box, Card, Container, Typography, useMediaQuery, TextField } from '@mui/material';
 //
-import { varFadeInUp, MotionInView, varFadeInDown } from '../../animate';
-
+import { MotionInView, varFadeInDown } from '../../animate';
+import * as React from 'react';
+import SendIcon from '@mui/icons-material/Send';
+import Button from '@mui/material/Button';
 // ----------------------------------------------------------------------
-
-const CARDS = [
-  {
-    icon: '/static/icons/ic_design.svg',
-    title: 'Roadside Assistance',
-    description:
-      'The set is built on the principles of the atomic design system. It helps you to create projects fastest and easily customized packages for your projects.'
-  },
-  {
-    icon: '/static/icons/ic_code.svg',
-    title: 'Unlimited Miles',
-    description: 'Easy to customize and extend each component, saving you time and money.'
-  },
-  {
-    icon: '/static/brand/logo_single.svg',
-    title: 'Trip Advice',
-    description: 'Consistent design in colors, fonts ... makes brand recognition easy.'
-  },
-  {
-    icon: '/static/brand/logo_single.svg',
-    title: 'No Booking Fees',
-    description: 'Consistent design in colors, fonts ... makes brand recognition easy.'
-  }
-];
-
-const shadowIcon = (color: string) => `drop-shadow(2px 2px 2px ${alpha(color, 0.48)})`;
-
 const RootStyle = styled('div')(({ theme }) => ({
   paddingTop: theme.spacing(15),
   [theme.breakpoints.up('md')]: {
@@ -61,36 +36,57 @@ export default function LandingMinimalHelps() {
   const theme = useTheme();
   const isLight = theme.palette.mode === 'light';
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
-
+  const [value, setValue] = React.useState('Controlled');
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
   return (
     <RootStyle>
       <Container maxWidth="lg">
         <Box sx={{ mb: { xs: 10, md: 25 } }}>
           <MotionInView variants={varFadeInDown}>
             <Typography variant="h2" sx={{ textAlign: 'center' }}>
-              Why Book With Us ?
+              Contact Us
             </Typography>
           </MotionInView>
         </Box>
-
-        <Grid container spacing={isDesktop ? 10 : 5}>
-          {CARDS.map((card, index) => (
-            <Grid key={card.title} item xs={12} md={6}>
-              <MotionInView variants={varFadeInUp}>
-                <CardStyle
-                  className={(index === 0 && 'cardLeft') || (index === 1 && 'cardCenter') || ''}
-                >
-                  <Typography variant="h3" paragraph>
-                    {card.title}
-                  </Typography>
-                  <Typography sx={{ color: isLight ? 'text.secondary' : 'common.white' }}>
-                    {card.description}
-                  </Typography>
-                </CardStyle>
-              </MotionInView>
-            </Grid>
-          ))}
-        </Grid>
+        <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 2, width: '40ch' },
+            textAlign: 'left'
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <div>
+            <TextField
+              id="standard-textarea"
+              label="First Name"
+              multiline
+              onChange={handleChange}
+              variant="standard"
+            />
+            <TextField
+              id="standard-textarea"
+              label="Last Name"
+              multiline
+              onChange={handleChange}
+              variant="standard"
+            />
+            <TextField id="standard-textarea" label="Email" multiline variant="standard" />
+            <TextField
+              id="standard-multiline-static"
+              label="Message"
+              multiline
+              rows={4}
+              variant="standard"
+            />
+          </div>
+          <Button size="large" variant="contained" endIcon={<SendIcon />}>
+            Send
+          </Button>
+        </Box>
       </Container>
     </RootStyle>
   );

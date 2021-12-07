@@ -1,7 +1,7 @@
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
-import { Box, Button, AppBar, Toolbar, Container, TextField } from '@mui/material';
+import { Box, AppBar, Toolbar, Container } from '@mui/material';
 // hooks
 import useOffSetTop from '../../hooks/useOffSetTop';
 // components
@@ -100,22 +100,6 @@ export default function MainNavbar() {
           <MHidden width="mdDown">
             <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
           </MHidden>
-          <Box
-            component="form"
-            sx={{ '& > :not(style)': { m: 1, width: '15ch' } }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField id="outlined-basic" label="Input code here" variant="outlined" />
-          </Box>
-          <Button
-            variant="contained"
-            target="_blank"
-            href="https://material-ui.com/store/items/minimal-dashboard/"
-          >
-            Send
-          </Button>
-
           <MHidden width="mdUp">
             <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
           </MHidden>
