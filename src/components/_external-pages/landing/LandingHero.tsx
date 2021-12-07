@@ -89,7 +89,7 @@ export default function LandingHero() {
                 size="medium"
                 fullWidth
                 id="epg-value"
-                label="Input code hear"
+                label="Input code here"
                 margin="dense"
                 InputProps={{
                   endAdornment: (
