@@ -175,8 +175,8 @@ export default function MenuMobile({ isOffset, isHome, navConfig }: MenuProps) {
         onClick={handleDrawerOpen}
         sx={{
           ml: 1,
-          ...(isHome && { color: 'common.white' }),
-          ...(isOffset && { color: 'text.primary' })
+          ...(isHome && { color: 'common.black' }),
+          ...(isOffset && { color: 'text.black' })
         }}
       >
         <Icon icon={menu2Fill} />
