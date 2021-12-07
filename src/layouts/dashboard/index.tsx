@@ -6,7 +6,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import useCollapseDrawer from '../../hooks/useCollapseDrawer';
 import PageOne from '../../pages/PageOne';
 //
-// import DashboardNavbar from './DashboardNavbar';
+import DashboardNavbar from './DashboardNavbar';
 // import DashboardSidebar from './DashboardSidebar';
 
 // ----------------------------------------------------------------------
@@ -42,21 +42,8 @@ export default function DashboardLayout() {
 
   return (
     <RootStyle>
+      <DashboardNavbar />
       <PageOne />
-      {/* <DashboardNavbar onOpenSidebar={() => setOpen(true)} />
-      <DashboardSidebar isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
-      <MainStyle
-        sx={{
-          transition: theme.transitions.create('margin', {
-            duration: theme.transitions.duration.complex
-          }),
-          ...(collapseClick && {
-            ml: '102px'
-          })
-        }}
-      >
-        <Outlet />
-      </MainStyle> */}
     </RootStyle>
   );
 }
