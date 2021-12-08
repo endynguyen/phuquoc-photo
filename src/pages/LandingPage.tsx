@@ -2,7 +2,11 @@
 import { styled } from '@mui/material/styles';
 // components
 import Page from '../components/Page';
-import { LandingHero, LandingMinimal } from '../components/_external-pages/landing';
+import {
+  LandingHero,
+  LandingMinimal,
+  LandingPricingPlans
+} from '../components/_external-pages/landing';
 
 // ----------------------------------------------------------------------
 
@@ -23,6 +27,7 @@ export default function LandingPage() {
     <RootStyle title="The starting point for your next project | Minimal-UI" id="move_top">
       <LandingHero />
       <ContentStyle>
+        <LandingPricingPlans />
         <LandingMinimal />
       </ContentStyle>
     </RootStyle>

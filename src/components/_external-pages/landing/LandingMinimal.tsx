@@ -1,34 +1,16 @@
 // material
-import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, Card, Container, Typography, useMediaQuery, TextField } from '@mui/material';
-//
-import { MotionInView, varFadeInDown } from '../../animate';
+import { useTheme, styled } from '@mui/material/styles';
+import { Box, Container, useMediaQuery, TextField } from '@mui/material';
 import * as React from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 // ----------------------------------------------------------------------
 const RootStyle = styled('div')(({ theme }) => ({
-  paddingTop: theme.spacing(15),
+  paddingTop: theme.spacing(0),
   [theme.breakpoints.up('md')]: {
-    paddingBottom: theme.spacing(15)
+    paddingBottom: theme.spacing(4)
   }
 }));
-
-const CardStyle = styled(Card)(({ theme }) => {
-  const shadowCard = (opacity: number) =>
-    theme.palette.mode === 'light'
-      ? alpha(theme.palette.grey[500], opacity)
-      : alpha(theme.palette.common.black, opacity);
-
-  return {
-    maxWidth: 500,
-    minHeight: 440,
-    margin: 'auto',
-    textAlign: 'center',
-    padding: theme.spacing(10, 5, 0),
-    boxShadow: `-40px 40px 80px 0 ${shadowCard(0.48)}`
-  };
-});
 
 // ----------------------------------------------------------------------
 
@@ -43,18 +25,11 @@ export default function LandingMinimalHelps() {
   return (
     <RootStyle>
       <Container maxWidth="lg">
-        <Box sx={{ mb: { xs: 10, md: 25 } }}>
-          <MotionInView variants={varFadeInDown}>
-            <Typography variant="h2" sx={{ textAlign: 'center' }}>
-              Contact Us
-            </Typography>
-          </MotionInView>
-        </Box>
         <Box
           component="form"
           sx={{
-            '& .MuiTextField-root': { m: 2, width: '40ch' },
-            textAlign: 'left'
+            '& .MuiTextField-root': { m: 2, width: '50ch' },
+            textAlign: 'center'
           }}
           noValidate
           autoComplete="off"
@@ -83,8 +58,17 @@ export default function LandingMinimalHelps() {
               variant="standard"
             />
           </div>
-          <Button size="large" variant="contained" endIcon={<SendIcon />}>
-            Send
+          <Button
+            style={{
+              border: 'none',
+              borderRadius: '40px',
+              height: '40px',
+              minWidth: '80px'
+            }}
+            variant="contained"
+            endIcon={<SendIcon />}
+          >
+            Submit
           </Button>
         </Box>
       </Container>

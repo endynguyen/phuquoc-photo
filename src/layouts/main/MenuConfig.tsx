@@ -13,7 +13,7 @@ const ICON_SIZE = {
 
 const menuConfig = [
   {
-    title: 'FAQ',
+    title: 'Hướng Dẫn ',
     path: '/',
     icon: <Icon icon={homeFill} {...ICON_SIZE} />
   },
