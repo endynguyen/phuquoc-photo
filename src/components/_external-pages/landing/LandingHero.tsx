@@ -86,11 +86,10 @@ export default function LandingHero() {
                 <Input
                   style={{
                     flex: 1,
-                    margin: '0 10px 10px 10px',
                     border: 'none',
                     height: '70px',
                     minWidth: '300px',
-                    maxWidth: '500px'
+                    maxWidth: '520px'
                   }}
                   id="epg-value"
                   placeholder="Nhập mã code vào đây"
@@ -107,7 +106,7 @@ export default function LandingHero() {
                   component={RouterLink}
                   to={PATH_DASHBOARD.root}
                 >
-                  Submit
+                  Gửi Mã
                 </Button>
               </Box>
             </motion.div>

@@ -6,11 +6,11 @@ import { varFadeIn, varFadeInUp, MotionInView, varFadeInDown } from '../../anima
 
 // ----------------------------------------------------------------------
 const STEP = [1, 2, 3];
-const TITLE = ['Reserve Your Ride', 'Plan Your Trip', 'Hit the Road'];
+const TITLE = ['Nhập Mã Code', 'Tải Ảnh ', 'Ảnh Đã Lưu'];
 const DESCRIPTION = [
-  'I am a paragraph. Click here to add your own text and edit me. Let your users get to know you.',
-  'I am a paragraph. Click here to add your own text and edit me. Let your users get to know you.',
-  'I am a paragraph. Click here to add your own text and edit me. Let your users get to know you.'
+  'Khi bạn vào trang chủ, sẽ có hiển thị ô nhập mã, bạn nhập mã code bạn có được vào ô và nhấn nút gửi .',
+  'Sau khi nhập mã, toàn bộ  ảnh của bạn sẽ hiển thị, bạn có thể lựa chọn tải từng tấm ảnh hoặc tải từng bức ảnh.',
+  'Ảnh của bạn sẽ đươc lưu vào máy của bạn, nếu việc tải ảnh chưa thành công, vui lòng thực hiện tải ảnh lại từ đầu như bước 2.'
 ];
 const PLANS = [...Array(3)].map((_, index) => ({
   step: STEP[index],
@@ -61,11 +61,11 @@ function PlanCard({ plan, cardIndex }: PlanCardProps) {
     >
       <Stack spacing={5}>
         <div>
-          <Typography variant="overline" sx={{ mb: 2, color: 'text.disabled', display: 'block' }}>
-            Step {step}
+          <Typography variant="h4" sx={{ mb: 2, display: 'block' }}>
+            Bước {step}
           </Typography>
-          <Typography variant="h4">{title}</Typography>
-          <Typography variant="overline" sx={{ mb: 2, color: 'text.disabled', display: 'block' }}>
+          <Typography variant="h3">{title}</Typography>
+          <Typography variant="h6" sx={{ mb: 2, display: 'block' }}>
             {description}
           </Typography>
         </div>
@@ -84,16 +84,7 @@ export default function LandingPricingPlans() {
         <Box sx={{ mb: 10, textAlign: 'center' }}>
           <MotionInView variants={varFadeInDown}>
             <Typography variant="h2" sx={{ mb: 3 }}>
-              Book Your Trip in 3 Easy Steps
-            </Typography>
-          </MotionInView>
-          <MotionInView variants={varFadeInDown}>
-            <Typography
-              sx={{
-                color: isLight ? 'text.secondary' : 'text.primary'
-              }}
-            >
-              Choose the perfect plan for your needs. Always flexible to grow
+              Tải ảnh đã chụp dể dàng trong 3 bước
             </Typography>
           </MotionInView>
         </Box>
@@ -111,11 +102,11 @@ export default function LandingPricingPlans() {
           <Box sx={{ pt: 5, mt: 10, textAlign: 'center' }}>
             <MotionInView variants={varFadeInDown}>
               <Typography paddingBottom="50px" variant="h3">
-                Still have questions?
+                Bạn vẫn còn câu hỏi ?
               </Typography>
             </MotionInView>
             <MotionInView variants={varFadeInDown}>
-              <Typography variant="h2">Contact Us</Typography>
+              <Typography variant="h2">Liên Hệ Với Chúng Tôi</Typography>
             </MotionInView>
           </Box>
         </MotionInView>

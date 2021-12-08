@@ -37,22 +37,22 @@ export default function LandingMinimalHelps() {
           <div>
             <TextField
               id="standard-textarea"
-              label="First Name"
+              label="Họ"
               multiline
               onChange={handleChange}
               variant="standard"
             />
             <TextField
               id="standard-textarea"
-              label="Last Name"
+              label="Tên"
               multiline
               onChange={handleChange}
               variant="standard"
             />
-            <TextField id="standard-textarea" label="Email" multiline variant="standard" />
+            <TextField id="standard-textarea" label="Địa chỉ Email" multiline variant="standard" />
             <TextField
               id="standard-multiline-static"
-              label="Message"
+              label="Tin nhắn"
               multiline
               rows={4}
               variant="standard"
@@ -68,7 +68,7 @@ export default function LandingMinimalHelps() {
             variant="contained"
             endIcon={<SendIcon />}
           >
-            Submit
+            Gửi
           </Button>
         </Box>
       </Container>
