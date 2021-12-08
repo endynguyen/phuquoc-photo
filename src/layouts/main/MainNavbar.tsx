@@ -1,18 +1,16 @@
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
-import { Box, AppBar, Toolbar, Container } from '@mui/material';
+import { Box, AppBar, Toolbar, Container, Button } from '@mui/material';
 // hooks
 import useOffSetTop from '../../hooks/useOffSetTop';
 // components
 import Logo from '../../components/Logo';
-import Label from '../../components/Label';
 // import { MHidden } from '../../components/@material-extend';
 // //
 // import MenuDesktop from './MenuDesktop';
 // import MenuMobile from './MenuMobile';
 // import navConfig from './MenuConfig';
-
 import * as React from 'react';
 // ----------------------------------------------------------------------
 
@@ -71,12 +69,12 @@ export default function MainNavbar() {
   const isHome = pathname === '/';
 
   return (
-    <AppBar sx={{ boxShadow: 0, bgcolor: 'rgb(0,0,0,0.7)' }}>
+    <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>
       <ToolbarStyle
         disableGutters
         sx={{
           ...(isOffset && {
-            bgcolor: 'rgb(0,0,0,0.7)',
+            bgcolor: 'background.default',
             height: { md: APP_BAR_DESKTOP - 16 }
           })
         }}
@@ -92,29 +90,7 @@ export default function MainNavbar() {
           <RouterLink to="/">
             <Logo />
           </RouterLink>
-          <Label
-            color="info"
-            sx={{
-              fontSize: '20px',
-              fontWeight: 'bold',
-              color: 'common.white'
-            }}
-          >
-            Phu Quoc Photo
-          </Label>
           <Box sx={{ flexGrow: 1 }} />
-          <RouterLink to="/">
-            <Label
-              sx={{
-                fontSize: '20px',
-                fontWeight: 'bold',
-                color: 'common.white',
-                textAlign: 'right'
-              }}
-            >
-              Hướng Dẫn
-            </Label>
-          </RouterLink>
 
           {/* <MHidden width="mdDown">
             <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
@@ -122,6 +98,14 @@ export default function MainNavbar() {
           <MHidden width="mdUp">
             <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
           </MHidden> */}
+          <Button
+            size="large"
+            variant="contained"
+            target="_blank"
+            href="https://material-ui.com/store/items/minimal-dashboard/"
+          >
+            Hướng Dẫn
+          </Button>
         </Container>
       </ToolbarStyle>
 
