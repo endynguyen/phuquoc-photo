@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -9,9 +8,26 @@ import AppPagination from '../components/AppPagination';
 import DownloadIcon from '@mui/icons-material/Download';
 import LinkIcon from '@mui/icons-material/Link';
 import { styled } from '@mui/material/styles';
-import { useState } from 'react';
 import { Typography, Button as MuiButton, ButtonGroup } from '@mui/material';
-
+import React, { useState } from 'react';
+import { useTheme } from '@mui/material/styles';
+import MobileStepper from '@mui/material/MobileStepper';
+// import Paper from '@mui/material/Paper';
+// import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
+// import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+// import Lightbox from 'react-image-lightbox';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+// import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import ImageIcon from '@mui/icons-material/Image';
 const RootStyle = styled('div')(({ theme }) => ({
   paddingTop: theme.spacing(15),
   [theme.breakpoints.up('md')]: {
@@ -30,23 +46,50 @@ const Div = styled('div')(({ theme }) => ({
 const generateOrderNumber = () => Math.floor(100000 + Math.random() * 900000).toString();
 
 export default function PageOne() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const [state, setState] = useState({ isOpen: false, photoIndex: 0, photoUrl: '' });
+  const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleStepChange = (step: number) => {
+    setActiveStep(step);
+  };
+
   const [id, setID] = useState(generateOrderNumber());
+  const maxSteps = images.length;
   return (
     <div style={{ alignItems: 'center', marginTop: '88px' }}>
       <Typography gutterBottom variant="h2" align="center">
         Hình ảnh mã đơn hàng #{id}
       </Typography>
       <ButtonGroup style={{ float: 'right', marginRight: '80px' }}>
-        <MuiButton size="large" startIcon={<DownloadIcon />}>
-          Download
-        </MuiButton>
-        <MuiButton size="large" startIcon={<LinkIcon />}>
-          Share
+        <MuiButton size="large" startIcon={<ImageIcon />} onClick={handleClickOpen}>
+          Image Box
         </MuiButton>
       </ButtonGroup>
       <Box sx={{ margin: '88px 60px' }}>
         <ImageList variant="masonry" cols={4} gap={6}>
-          {itemData.map((item) => (
+          {images.map((item) => (
             <ImageListItem
               sx={{
                 '& .MuiImageListItem-img': {
@@ -58,7 +101,19 @@ export default function PageOne() {
               }}
               key={item.img}
             >
-              <img src={item.img} srcSet={item.img} alt={item.title} loading="lazy" />
+              <img
+                src={item.img}
+                srcSet={item.img}
+                alt={item.title}
+                loading="lazy"
+                onClick={() => {
+                  let updateState = { ...state };
+                  updateState.isOpen = true;
+                  updateState.photoUrl = item.img;
+                  setState(updateState);
+                  handleClickOpen();
+                }}
+              />
               <ImageListItemBar
                 title={item.title}
                 actionIcon={
@@ -74,13 +129,77 @@ export default function PageOne() {
             </ImageListItem>
           ))}
         </ImageList>
+        <Dialog
+          fullScreen={fullScreen}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <DialogTitle id="responsive-dialog-title">{'Phuquoc Photos'}</DialogTitle>
+          <DialogContent>
+            <AutoPlaySwipeableViews
+              axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+              index={activeStep}
+              onChangeIndex={handleStepChange}
+              enableMouseEvents
+            >
+              {images.map((step, index) => (
+                <div key={step.title}>
+                  {Math.abs(activeStep - index) <= 2 ? (
+                    <Box
+                      component="img"
+                      sx={{
+                        height: '100%',
+                        maxWidth: '100%',
+                        overflow: 'hidden',
+                        width: '100%'
+                      }}
+                      src={step.img}
+                      alt={step.title}
+                    />
+                  ) : null}
+                </div>
+              ))}
+            </AutoPlaySwipeableViews>
+            <MobileStepper
+              steps={maxSteps}
+              position="static"
+              activeStep={activeStep}
+              nextButton={
+                <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+                  Next
+                  {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                </Button>
+              }
+              backButton={
+                <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                  {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                  Back
+                </Button>
+              }
+            />
+          </DialogContent>
+          <ButtonGroup style={{ display: 'flex', justifyContent: 'center' }}>
+            <MuiButton size="large" startIcon={<DownloadIcon />}>
+              Download
+            </MuiButton>
+            <MuiButton size="large" startIcon={<LinkIcon />}>
+              Share
+            </MuiButton>
+          </ButtonGroup>
+          <DialogActions>
+            <Button onClick={handleClose} autoFocus>
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
         <AppPagination />
       </Box>
     </div>
   );
 }
 
-const itemData = [
+const images = [
   {
     img: 'http://wiki-travel.com.vn/Uploads/picture/hieuhieu-193223023247-phan-biet-snorkeling-va-diving.jpg',
     title: 'Bed'
