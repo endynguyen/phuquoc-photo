@@ -45,7 +45,8 @@ const HeroImgStyle = styled(motion.img)(({ theme }) => ({
   width: '100%',
   height: 'auto',
   margin: 'auto',
-  position: 'absolute'
+  position: 'absolute',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)'
 }));
 
 // ----------------------------------------------------------------------
@@ -80,7 +81,7 @@ export default function LandingHero() {
                   borderRadius: '40px',
                   transition: 'width 300ms ease',
                   height: '70px',
-                  maxWidth: '520px'
+                  minWidth: '400px'
                 }}
               >
                 <Input
@@ -88,8 +89,8 @@ export default function LandingHero() {
                     flex: 1,
                     border: 'none',
                     height: '70px',
-                    minWidth: '300px',
-                    maxWidth: '520px'
+                    minWidth: '330px',
+                    maxWidth: '400px'
                   }}
                   id="epg-value"
                   placeholder="Nhập mã code vào đây"
@@ -100,7 +101,7 @@ export default function LandingHero() {
                     border: 'none',
                     borderRadius: '40px',
                     height: '40px',
-                    minWidth: '80px'
+                    width: '80px'
                   }}
                   variant="contained"
                   component={RouterLink}
