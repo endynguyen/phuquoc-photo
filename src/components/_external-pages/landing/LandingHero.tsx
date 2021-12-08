@@ -2,21 +2,12 @@ import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
-import {
-  IconButton,
-  Box,
-  Container,
-  Typography,
-  Stack,
-  TextField,
-  InputAdornment
-} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import { Box, Container, Typography, Stack, Input, Button } from '@mui/material';
 import * as React from 'react';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 //
-import { varFadeInUp, varWrapEnter, varFadeInRight } from '../../animate';
+import { varFadeInUp, varWrapEnter, varFadeInRight, varFadeInLeft } from '../../animate';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(motion.div)(({ theme }) => ({
@@ -38,11 +29,11 @@ const ContentStyle = styled((props) => <Stack spacing={5} {...props} />)(({ them
   margin: 'auto',
   textAlign: 'center',
   position: 'relative',
-  paddingTop: theme.spacing(15),
-  paddingBottom: theme.spacing(15),
+  paddingTop: theme.spacing(5),
+  paddingBottom: theme.spacing(2),
   [theme.breakpoints.up('md')]: {
-    margin: 'unset',
-    textAlign: 'left'
+    margin: 'auto',
+    textAlign: 'center'
   }
 }));
 
@@ -67,45 +58,58 @@ export default function LandingHero() {
 
         <Container maxWidth="lg">
           <ContentStyle>
-            <motion.div variants={varFadeInRight}>
+            <motion.div variants={varFadeInLeft}>
               <Typography
-                sx={{ fontSize: '100px', fontFamily: 'sans-serif', color: 'common.white' }}
+                sx={{
+                  fontSize: '90px',
+                  fontWeight: 'bold',
+                  color: 'common.white'
+                }}
               >
-                Phu Quoc <br />
+                PhuQuoc <br />
                 Photo <br />
               </Typography>
             </motion.div>
             <motion.div variants={varFadeInRight}>
-              <TextField
+              <Box
                 style={{
                   flex: 1,
-                  margin: '0 40px 0 0',
                   color: 'common.white',
                   border: 'none',
-                  background: 'rgb(243, 246, 249)',
+                  background: 'white',
                   borderRadius: '40px',
-                  transition: 'width 300ms ease'
+                  transition: 'width 300ms ease',
+                  height: '70px',
+                  maxWidth: '520px'
                 }}
-                size="medium"
-                fullWidth
-                id="epg-value"
-                label="Input code here"
-                margin="dense"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        edge="end"
-                        color="primary"
-                        component={RouterLink}
-                        to={PATH_DASHBOARD.root}
-                      >
-                        <SearchIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-              />
+              >
+                <Input
+                  style={{
+                    flex: 1,
+                    margin: '0 10px 10px 10px',
+                    border: 'none',
+                    height: '70px',
+                    minWidth: '300px',
+                    maxWidth: '500px'
+                  }}
+                  id="epg-value"
+                  placeholder="Nhập mã code vào đây"
+                  disableUnderline
+                />
+                <Button
+                  style={{
+                    border: 'none',
+                    borderRadius: '40px',
+                    height: '40px',
+                    minWidth: '80px'
+                  }}
+                  variant="contained"
+                  component={RouterLink}
+                  to={PATH_DASHBOARD.root}
+                >
+                  Submit
+                </Button>
+              </Box>
             </motion.div>
           </ContentStyle>
         </Container>

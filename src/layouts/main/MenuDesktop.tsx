@@ -168,7 +168,8 @@ function MenuDesktopItem({
                         sx={{
                           '&.active': {
                             color: 'text.primary',
-                            typography: 'subtitle2'
+                            typography: 'subtitle2',
+                            fontSize: '30px'
                           }
                         }}
                       >

@@ -7,16 +7,16 @@ import useOffSetTop from '../../hooks/useOffSetTop';
 // components
 import Logo from '../../components/Logo';
 import Label from '../../components/Label';
-import { MHidden } from '../../components/@material-extend';
-//
-import MenuDesktop from './MenuDesktop';
-import MenuMobile from './MenuMobile';
-import navConfig from './MenuConfig';
+// import { MHidden } from '../../components/@material-extend';
+// //
+// import MenuDesktop from './MenuDesktop';
+// import MenuMobile from './MenuMobile';
+// import navConfig from './MenuConfig';
 
 import * as React from 'react';
 // ----------------------------------------------------------------------
 
-const APP_BAR_MOBILE = 64;
+const APP_BAR_MOBILE = 50;
 const APP_BAR_DESKTOP = 88;
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
@@ -71,12 +71,12 @@ export default function MainNavbar() {
   const isHome = pathname === '/';
 
   return (
-    <AppBar sx={{ boxShadow: 0, bgcolor: 'background.default' }}>
+    <AppBar sx={{ boxShadow: 0, bgcolor: 'rgb(0,0,0,0.7)' }}>
       <ToolbarStyle
         disableGutters
         sx={{
           ...(isOffset && {
-            bgcolor: 'background.default',
+            bgcolor: 'rgb(0,0,0,0.7)',
             height: { md: APP_BAR_DESKTOP - 16 }
           })
         }}
@@ -92,17 +92,36 @@ export default function MainNavbar() {
           <RouterLink to="/">
             <Logo />
           </RouterLink>
-          <Label color="info" sx={{ ml: 1 }}>
+          <Label
+            color="info"
+            sx={{
+              fontSize: '20px',
+              fontWeight: 'bold',
+              color: 'common.white'
+            }}
+          >
             Phu Quoc Photo
           </Label>
           <Box sx={{ flexGrow: 1 }} />
+          <RouterLink to="/">
+            <Label
+              sx={{
+                fontSize: '20px',
+                fontWeight: 'bold',
+                color: 'common.white',
+                textAlign: 'right'
+              }}
+            >
+              Hướng Dẫn
+            </Label>
+          </RouterLink>
 
-          <MHidden width="mdDown">
+          {/* <MHidden width="mdDown">
             <MenuDesktop isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
           </MHidden>
           <MHidden width="mdUp">
             <MenuMobile isOffset={isOffset} isHome={isHome} navConfig={navConfig} />
-          </MHidden>
+          </MHidden> */}
         </Container>
       </ToolbarStyle>
 
