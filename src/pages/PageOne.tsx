@@ -1,32 +1,31 @@
-import Box from '@mui/material/Box';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-import IconButton from '@mui/material/IconButton';
+import {
+  Box,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
+  IconButton,
+  styled,
+  Typography,
+  useTheme,
+  MobileStepper,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  useMediaQuery
+} from '@mui/material';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import AppPagination from '../components/AppPagination';
 import DownloadIcon from '@mui/icons-material/Download';
 import LinkIcon from '@mui/icons-material/Link';
-import { styled } from '@mui/material/styles';
-import { Typography, Button as MuiButton, ButtonGroup } from '@mui/material';
+import { Button as MuiButton, ButtonGroup } from '@mui/material';
 import React, { useState } from 'react';
-import { useTheme } from '@mui/material/styles';
-import MobileStepper from '@mui/material/MobileStepper';
-// import Paper from '@mui/material/Paper';
-// import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-// import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
-// import Lightbox from 'react-image-lightbox';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-// import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import useMediaQuery from '@mui/material/useMediaQuery';
+
 import ImageIcon from '@mui/icons-material/Image';
 const RootStyle = styled('div')(({ theme }) => ({
   paddingTop: theme.spacing(15),
@@ -49,6 +48,7 @@ export default function PageOne() {
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const [state, setState] = useState({ isOpen: false, photoIndex: 0, photoUrl: '' });
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -88,7 +88,7 @@ export default function PageOne() {
         </MuiButton>
       </ButtonGroup>
       <Box sx={{ margin: '88px 60px' }}>
-        <ImageList variant="masonry" cols={4} gap={6}>
+        <ImageList variant="masonry" cols={mobile ? 2 : fullScreen ? 3 : 4} gap={6}>
           {images.map((item) => (
             <ImageListItem
               sx={{
